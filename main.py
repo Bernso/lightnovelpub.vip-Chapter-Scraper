@@ -136,8 +136,12 @@ def main():
 <body>
     <div class="chapter">
         <div class="content">
-            <span class="speaker">Chapter {chapterNumber}</span>
-            {chapter_text.replace('\n', '<br>')}
+            <span class="speaker">
+                Chapter {chapterNumber}
+            </span>
+            <p class="content">
+                {chapter_text.replace('\n', '<br>')}
+            </p>
         </div>
     </div>
 </body>
