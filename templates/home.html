@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="9cb5e3d1-c017-422a-8b1b-69abc98c5feb.jpeg"  type="image/jpeg">
+    <title>Home</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            background-color: #121212; /* Dark background */
+            color: #E0E0E0; /* Light text */
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Chapter container */
+        .chapter {
+            background-color: #1E1E1E; /* Slightly lighter background for contrast */
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 120vh; /* Increased width */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Subtle glow effect */
+            margin: 0 auto; /* Center the container */
+        }
+
+        /* Content paragraph */
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6; /* Improved readability */
+        }
+
+        /* Speaker names */
+        .content .speaker {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #BB86FC; /* Highlight color for speaker names */
+            font-size: 60px;
+        }
+
+        /* Dialogue text */
+        .content .dialogue {
+            margin-left: 20px; /* Indent dialogue for clarity */
+            margin-bottom: 10px; /* Space between dialogues */
+        }
+
+        /* Adding link styles */
+        a {
+            color: #03DAC5; /* Highlight color for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #BB86FC; /* Link hover color */
+        }
+
+        /* Scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 10px; /* Width of the scrollbar */
+        }
+
+        /* Scrollbar Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #bb86fc8e; /* Color of the scrollbar handle */
+            border-radius: 5px; /* Border radius of the scrollbar handle */
+        }
+
+        /* Scrollbar Track */
+        ::-webkit-scrollbar-track {
+            background: #000000; /* Background color of the scrollbar track */
+        }
+
+        /* Scrollbar Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #bb86fcab; /* Color of the scrollbar handle on hover */
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background: #bb86fc; /* Color of the scrollbar handle on hover */
+        }
+
+        /* Button Styles */
+        button {
+            background-color: #BB86FC; /* Initial background color */
+            color: #121212; /* Button text color */
+            border: none;
+            padding: 10px 20px; /* Padding for the button */
+            font-size: 1em; /* Font size */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Cursor on hover */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition for background and scale */
+            margin-top: 20px; /* Space above the button */
+        }
+
+        /* Button Hover Effect */
+        button:hover {
+            background-color: #BB86FC; /* Background color on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        /* Button Active State */
+        button:active {
+            background-color: #6200EE; /* Background color on active */
+            transform: scale(0.95); /* Slightly shrink on click */
+        }
+    </style>
+</head>
+<body>
+    <div class="chapter">
+        <div class="content">
+            <span class="speaker">Home Page</span>
+            <button id="generateButton">Generate TBATE Chapters</button>
+            <p class="content">
+                <br>Generating chapters will create a webpage<br>with the content of the given chapter. 
+            </p>
+        </div>
+    </div>
+</body>
+<script>
+    // Add an event listener to the button
+    document.getElementById('generateButton').addEventListener('click', function() {
+        // Send a POST request to the server to run the genfiles.py script
+        fetch('/run_script', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({}) // No data needed for this request
+        })
+        .then(response => {
+            if (response.ok) {
+                // If the request is successful, display a success message
+                alert('Chapters generated successfully!');
+            } else {
+                // If there's an error, display an error message
+                alert('Error generating chapters!');
+            }
+        })
+        .catch(error => {
+            // If there's a network error, display an error message
+            console.error('Error:', error);
+            alert('Network error. Please try again later.');
+        });
+    });
+</script>
+</html>
